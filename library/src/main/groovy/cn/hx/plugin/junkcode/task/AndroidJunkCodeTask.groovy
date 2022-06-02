@@ -187,7 +187,11 @@ class AndroidJunkCodeTask extends DefaultTask {
         FileWriter writer
         try {
             writer = new FileWriter(drawableFile)
-            def template = ResTemplate.DRAWABLE
+            def binding = [
+                    offset1 : Math.random(),
+                    offset2 : Math.random(),
+            ]
+            def template = makeTemplate(ResTemplate.DRAWABLE, binding)
             writer.write(template.toString())
         } catch (Exception e) {
             e.printStackTrace()

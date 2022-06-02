@@ -24,10 +24,10 @@ class ResTemplate {
                 android:type="linear">
                 <item
                     android:color="#44000000"
-                    android:offset="0.0" />
+                    android:offset="${offset1}" />
                 <item
                     android:color="#00000000"
-                    android:offset="1.0" />
+                    android:offset="${offset2}" />
             </gradient>
         </aapt:attr>
     </path>
