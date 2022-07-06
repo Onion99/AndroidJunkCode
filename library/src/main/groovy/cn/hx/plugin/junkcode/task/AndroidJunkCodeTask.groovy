@@ -76,8 +76,8 @@ class AndroidJunkCodeTask extends DefaultTask {
      * @param methodBuilder
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-        switch (random.nextInt(5)) {
-            case 0:
+        switch (random.nextInt(7)) {
+            case 1:
                 def time = System.currentTimeMillis()
                 def timeSay = "Current Time:" + time
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
@@ -89,13 +89,6 @@ class AndroidJunkCodeTask extends DefaultTask {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .endControlFlow()
                 break
-            case 1:
-                methodBuilder.addCode(""
-                        + "int total = \$S;\n"
-                        + "for (int i = 0; i < 10; i++) {\n"
-                        + "  total += i;\n"
-                        + "}\n",Math.random().toInteger())
-                break
             case 2:
                 methodBuilder.beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
@@ -103,7 +96,7 @@ class AndroidJunkCodeTask extends DefaultTask {
                         .addStatement("throw new \$T(e)", RuntimeException.class)
                         .endControlFlow()
                 break
-            case 4:
+            case 3:
                 def value = Math.random().toString()
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
