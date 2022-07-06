@@ -78,9 +78,11 @@ class AndroidJunkCodeTask extends DefaultTask {
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         switch (random.nextInt(5)) {
             case 0:
+                def time = System.currentTimeMillis()
+                def timeSay = "Current Time:" + time
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
-                        .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
+                        .addStatement("\$T.out.println(\$S)", System.class, timeSay)
                         .nextControlFlow("else if (\$T.currentTimeMillis() == now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
@@ -89,10 +91,10 @@ class AndroidJunkCodeTask extends DefaultTask {
                 break
             case 1:
                 methodBuilder.addCode(""
-                        + "int total = 0;\n"
+                        + "int total = \$S;\n"
                         + "for (int i = 0; i < 10; i++) {\n"
                         + "  total += i;\n"
-                        + "}\n")
+                        + "}\n",Math.random().toInteger())
                 break
             case 2:
                 methodBuilder.beginControlFlow("try")
@@ -101,21 +103,19 @@ class AndroidJunkCodeTask extends DefaultTask {
                         .addStatement("throw new \$T(e)", RuntimeException.class)
                         .endControlFlow()
                 break
-            case 3:
-                methodBuilder.returns(Date.class)
-                        .addStatement("return new \$T()", Date.class)
-                break
             case 4:
+                def value = Math.random().toString()
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
-                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                        .addStatement("\$T.out.println(\$S)", System.class, value)
                 break
             default:
+                def value = Math.random().toString()
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
-                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                        .addStatement("\$T.out.println(\$S)", System.class, value)
         }
     }
 
