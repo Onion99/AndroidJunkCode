@@ -181,8 +181,8 @@ class AndroidJunkCodeTask extends DefaultTask {
         try {
             writer = new FileWriter(drawableFile)
             def binding = [
-                    offset1 : Math.random(),
-                    offset2 : Math.random(),
+                    offset1 : random.nextInt(1000000),
+                    offset2 : random.nextInt(1000000),
             ]
             def template = makeTemplate(ResTemplate.DRAWABLE, binding)
             writer.write(template.toString())
