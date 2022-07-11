@@ -39,6 +39,17 @@ class ResTemplate {
         android:strokeColor="#00000000" />
 </vector>'''
 
+    static final def DRAWABLE2 = '''<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M19,6.41L17.59,${offset1} ${offset2},10.59 6.41,7 5,6.41 10.59,${offset3} ${offset4},17.59 6.41,19 12,13.41 17.59,${offset5} ${offset6},17.59 13.41,12z" />
+</vector>
+'''
+
 
     static final def STRING_NODE = '''    <string name="${stringName}">${stringValue}</string>'''
 
@@ -55,4 +66,22 @@ class ResTemplate {
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 </LinearLayout>'''
+
+    static final def LAYOUT_TEMPLATE2 = '''<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="${offset1}"
+        android:scaleY="${offset1}"
+        android:text="${offset3}"
+        android:layout_gravity="center" />
+</LinearLayout>'''
+
 }

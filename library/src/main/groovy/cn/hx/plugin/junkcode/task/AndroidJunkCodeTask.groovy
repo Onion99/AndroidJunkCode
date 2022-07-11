@@ -196,6 +196,39 @@ class AndroidJunkCodeTask extends DefaultTask {
     }
 
 
+    static def randomDrawable = new Random()
+    void generateDrawableNew(String drawableName) {
+        generateLayoutWithDrawableName(drawableName)
+        def drawableFile = new File(outDir, "res/drawable/${drawableName}.xml")
+        if (!drawableFile.getParentFile().exists()) {
+            drawableFile.getParentFile().mkdirs()
+        }
+        if (!drawableFile.exists()) {
+            drawableFile.createNewFile()
+        }
+        FileWriter writer
+        try {
+            writer = new FileWriter(drawableFile)
+            def binding = [
+                    offset1 : randomDrawable.nextInt(),
+                    offset2 : randomDrawable.nextInt(),
+                    offset3 : randomDrawable.nextInt(),
+                    offset4 : randomDrawable.nextInt(),
+                    offset5 : randomDrawable.nextInt(),
+                    offset6 : randomDrawable.nextInt()
+            ]
+            def template = makeTemplate(ResTemplate.DRAWABLE2, binding)
+            writer.write(template.toString())
+        } catch (Exception e) {
+            e.printStackTrace()
+        } finally {
+            if (writer != null) {
+                writer.close()
+            }
+        }
+    }
+
+
     /**
      * 生成layout
      * @param layoutName
@@ -212,6 +245,35 @@ class AndroidJunkCodeTask extends DefaultTask {
         try {
             writer = new FileWriter(layoutFile)
             def template = ResTemplate.LAYOUT_TEMPLATE
+            writer.write(template.toString())
+        } catch (Exception e) {
+            e.printStackTrace()
+        } finally {
+            if (writer != null) {
+                writer.close()
+            }
+        }
+    }
+    
+    void generateLayoutWithDrawableName(String Name) {
+        String packageName = config.packageBase + "." + generateName(i)
+        def layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${Name}"
+        def layoutFile = new File(outDir, "res/layout/${layoutName}.xml")
+        if (!layoutFile.getParentFile().exists()) {
+            layoutFile.getParentFile().mkdirs()
+        }
+        if (!layoutFile.exists()) {
+            layoutFile.createNewFile()
+        }
+        FileWriter writer
+        try {
+            writer = new FileWriter(layoutFile)
+            def binding = [
+                    offset1 : randomDrawable.nextDouble(),
+                    offset2 : randomDrawable.nextDouble(),
+                    offset3 : layoutName,
+            ]
+            def template = makeTemplate(ResTemplate.LAYOUT_TEMPLATE2, binding)
             writer.write(template.toString())
         } catch (Exception e) {
             e.printStackTrace()
