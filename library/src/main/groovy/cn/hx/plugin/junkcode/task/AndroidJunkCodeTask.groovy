@@ -210,12 +210,12 @@ class AndroidJunkCodeTask extends DefaultTask {
         try {
             writer = new FileWriter(drawableFile)
             def binding = [
-                    offset1 : randomDrawable.nextInt(),
-                    offset2 : randomDrawable.nextInt(),
-                    offset3 : randomDrawable.nextInt(),
-                    offset4 : randomDrawable.nextInt(),
-                    offset5 : randomDrawable.nextInt(),
-                    offset6 : randomDrawable.nextInt()
+                    offset1 : randomDrawable.nextInt(100),
+                    offset2 : randomDrawable.nextInt(100),
+                    offset3 : randomDrawable.nextInt(100),
+                    offset4 : randomDrawable.nextInt(100),
+                    offset5 : randomDrawable.nextInt(100),
+                    offset6 : randomDrawable.nextInt(100)
             ]
             def template = makeTemplate(ResTemplate.DRAWABLE2, binding)
             writer.write(template.toString())
@@ -268,8 +268,8 @@ class AndroidJunkCodeTask extends DefaultTask {
         try {
             writer = new FileWriter(layoutFile)
             def binding = [
-                    offset1 : randomDrawable.nextDouble(),
-                    offset2 : randomDrawable.nextDouble(),
+                    offset1 : randomDrawable.nextDouble().round(2),
+                    offset2 : randomDrawable.nextDouble().round(2),
                     offset3 : layoutName,
             ]
             def template = makeTemplate(ResTemplate.LAYOUT_TEMPLATE2, binding)
