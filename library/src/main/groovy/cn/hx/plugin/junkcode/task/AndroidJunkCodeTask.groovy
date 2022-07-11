@@ -256,8 +256,7 @@ class AndroidJunkCodeTask extends DefaultTask {
     }
     
     void generateLayoutWithDrawableName(String Name) {
-        String packageName = config.packageBase + "." + generateName(i)
-        def layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${Name}"
+        def layoutName = "${config.resPrefix.toLowerCase()}_activity_${Name}"
         def layoutFile = new File(outDir, "res/layout/${layoutName}.xml")
         if (!layoutFile.getParentFile().exists()) {
             layoutFile.getParentFile().mkdirs()
