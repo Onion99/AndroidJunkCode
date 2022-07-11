@@ -155,7 +155,7 @@ class AndroidJunkCodeTask extends DefaultTask {
         //生成drawable
         for (int i = 0; i < config.drawableCount; i++) {
             def drawableName = "${config.resPrefix.toLowerCase()}${generateName(i)}"
-            generateDrawable(drawableName)
+            generateDrawableNew(drawableName)
         }
         //生成string
         for (int i = 0; i < config.stringCount; i++) {
